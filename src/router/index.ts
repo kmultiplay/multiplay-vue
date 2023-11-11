@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import HomeView from "../views/HomeView.vue";
+import GetAllMessagesView from "../views/GetAllMessagesView.vue";
+import GetMessageView from "../views/GetMessageView.vue";
+import SendMessageView from "../views/SendMessageView.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -8,13 +11,19 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView,
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+    path: "/get-all-messages",
+    name: "get-all-messages",
+    component: GetAllMessagesView,
+  },
+  {
+    path: "/get-message",
+    name: "get-message",
+    component: GetMessageView,
+  },
+  {
+    path: "/send-message",
+    name: "send-message",
+    component: SendMessageView,
   },
 ];
 

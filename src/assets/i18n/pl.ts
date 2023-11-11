@@ -1,7 +1,10 @@
 export const messages = {
   pl: {
-    message: {
-      hello: "siemano",
+    nav: {
+      home: "Home",
+      sendMessage: "Wyślij wiadomość",
+      getAllMessages: "Pobierz wszystkie wiadomości",
+      getMessage: "Odczytaj wiadomość",
     },
   },
 };
