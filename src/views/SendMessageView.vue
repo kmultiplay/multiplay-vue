@@ -1,5 +1,6 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <SendMessage></SendMessage>
 </template>
+<script setup lang="ts">
+import SendMessage from "@/components/SendMessage.vue";
+</script>
