@@ -17,5 +17,11 @@ export const messages = {
         error: "Coś poszło nie tak, skontaktuj się z DI",
       },
     },
+    getAllMessages: {
+      getAllMessages: "Pobierz wszystkie wiadomości",
+      uuid: "Uuid",
+      message: "Wiadomość",
+      timestamp: "Timestamp",
+    },
   },
 };

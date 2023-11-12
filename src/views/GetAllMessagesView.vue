@@ -1,5 +1,7 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <GetAllMessages></GetAllMessages>
 </template>
+
+<script setup>
+import GetAllMessages from "../components/GetAllMessages";
+</script>
