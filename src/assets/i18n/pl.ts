@@ -25,11 +25,13 @@ export const messages = {
     getAllMessages: {
       getAllMessages: "Pobierz wszystkie wiadomości",
       uuid: "Uuid",
+      sorting: "Kliknij w Uuid lub Timestamp, aby posortować",
     },
     getMessage: {
       getMessage: "Pobierz wiadomość",
       read: "Odczytaj",
       enterUuid: "Wpisz uuid wiadomości",
+      wrongUuid: "Nieprawidłowe uuid",
     },
   },
 };

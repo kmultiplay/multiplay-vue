@@ -1,6 +1,6 @@
 <template>
   <GetMessage></GetMessage>
 </template>
-<script setup>
-import GetMessage from "../components/GetMessage";
+<script setup lang="ts">
+import GetMessage from "@/components/GetMessage.vue";
 </script>

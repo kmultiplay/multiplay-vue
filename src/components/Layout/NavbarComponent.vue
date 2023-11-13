@@ -35,9 +35,8 @@ interface MenuItem {
 }
 
 const menuItems: MenuItem[] = [
-  { translation: "nav.home", to: "/" },
+  { translation: "nav.getAllMessages", to: "/" },
   { translation: "nav.sendMessage", to: "/send-message" },
-  { translation: "nav.getAllMessages", to: "/get-all-messages" },
   { translation: "nav.getMessage", to: "/get-message" },
 ];
 </script>

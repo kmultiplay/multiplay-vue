@@ -1,9 +1,9 @@
 <template>
   <div class="container">
-    <div class="text-left mb-8">
+    <div class="text-left mb-4">
       <button
         @click="getAllMessages"
-        class="bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
         {{ $t("getAllMessages.getAllMessages") }}
       </button>
@@ -11,38 +11,43 @@
         {{ $t("common.error") }}
       </span>
     </div>
-    <table v-if="store.getMessages.length > 0" class="w-full text-left">
-      <thead>
-        <tr>
-          <th @click="sortByUuid">
-            {{ $t("getAllMessages.uuid") }}
-            <span v-if="sortingBy === SortingByEnum.Uuid">
-              {{ activeSorting }}
-            </span>
-          </th>
-          <th>
-            {{ $t("common.message") }}
-          </th>
-          <th @click="sortByTimestamp">
-            {{ $t("common.timestamp") }}
-            <span v-if="sortingBy === SortingByEnum.Timestamp">
-              {{ activeSorting }}
-            </span>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr
-          class="data-test"
-          v-for="(message, index) in store.getMessages"
-          :key="index"
-        >
-          <td>{{ message.uuid }}</td>
-          <td>{{ message.message }}</td>
-          <td>{{ message.timestamp }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div v-if="store.getMessages.length > 0">
+      <p class="text-left">
+        <i>{{ $t("getAllMessages.sorting") }}</i>
+      </p>
+      <table class="w-full text-left">
+        <thead>
+          <tr>
+            <th @click="sortByUuid">
+              {{ $t("getAllMessages.uuid") }}
+              <span v-if="sortingBy === SortingByEnum.Uuid">
+                {{ activeSorting }}
+              </span>
+            </th>
+            <th>
+              {{ $t("common.message") }}
+            </th>
+            <th @click="sortByTimestamp">
+              {{ $t("common.timestamp") }}
+              <span v-if="sortingBy === SortingByEnum.Timestamp">
+                {{ activeSorting }}
+              </span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            class="item"
+            v-for="(message, index) in store.getMessages"
+            :key="index"
+          >
+            <td>{{ message.uuid }}</td>
+            <td>{{ message.message }}</td>
+            <td>{{ message.timestamp }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -123,7 +128,13 @@ function sortByUuid() {
 </script>
 
 <style lang="postcss" scoped>
-.data-test:nth-child(odd) {
-  @apply bg-gray-200;
+.item {
+  &:nth-child(odd) {
+    @apply bg-gray-200;
+  }
+
+  &:hover {
+    @apply bg-gray-300;
+  }
 }
 </style>

@@ -2,6 +2,6 @@
   <GetAllMessages></GetAllMessages>
 </template>
 
-<script setup>
-import GetAllMessages from "../components/GetAllMessages";
+<script setup lang="ts">
+import GetAllMessages from "@/components/GetAllMessages.vue";
 </script>

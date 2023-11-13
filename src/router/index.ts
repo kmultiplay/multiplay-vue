@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
 import GetAllMessagesView from "../views/GetAllMessagesView.vue";
 import GetMessageView from "../views/GetMessageView.vue";
 import SendMessageView from "../views/SendMessageView.vue";
@@ -7,11 +6,6 @@ import SendMessageView from "../views/SendMessageView.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    name: "home",
-    component: HomeView,
-  },
-  {
-    path: "/get-all-messages",
     name: "get-all-messages",
     component: GetAllMessagesView,
   },
