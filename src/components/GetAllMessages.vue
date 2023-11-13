@@ -1,15 +1,17 @@
 <template>
   <div class="container">
-    <button
-      @click="getAllMessages"
-      class="bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-    >
-      {{ $t("getAllMessages.getAllMessages") }}
-    </button>
-    <span v-if="errorOccurred" class="text-red-700"
-      >Nie udało się pobrać danych, zgłoś się do DI</span
-    >
-    <table v-if="store.getMessages.length > 0" class="table-auto text-left">
+    <div class="text-left mb-8">
+      <button
+        @click="getAllMessages"
+        class="bg-blue-500 disabled:bg-blue-300 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+      >
+        {{ $t("getAllMessages.getAllMessages") }}
+      </button>
+      <span v-if="errorOccurred" class="text-red-700 ml-1">
+        {{ $t("common.error") }}
+      </span>
+    </div>
+    <table v-if="store.getMessages.length > 0" class="w-full text-left">
       <thead>
         <tr>
           <th @click="sortByUuid">
@@ -30,7 +32,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(message, index) in store.getMessages" :key="index">
+        <tr
+          class="data-test"
+          v-for="(message, index) in store.getMessages"
+          :key="index"
+        >
           <td>{{ message.uuid }}</td>
           <td>{{ message.message }}</td>
           <td>{{ message.timestamp }}</td>
@@ -66,17 +72,14 @@ const activeSorting = ref<SortingOrderEnum>(SortingOrderEnum.ASC);
 const sortingBy = ref<SortingByEnum>();
 const errorOccurred = ref<boolean>(false);
 
-// desc malejąco
-// asc rosnąco
-// ttp://rekrutacja-dev.multiplay.pl/api/messages?sortBy=timestamp&order=desc
-
 function getAllMessages() {
   axios
     .get(`${services.api}/messages`)
-    .then(
-      (response: AxiosResponse<MessageInterface[]>) =>
-        (store.messages = response.data)
-    );
+    .then((response: AxiosResponse<MessageInterface[]>) => {
+      store.messages = response.data;
+      sortingBy.value = undefined;
+    })
+    .catch(() => (errorOccurred.value = true));
 }
 
 function sortByTimestamp() {
@@ -94,7 +97,9 @@ function sortByTimestamp() {
           ? (sortingOrderForTimestamp.value = SortingOrderEnum.DESC)
           : (sortingOrderForTimestamp.value = SortingOrderEnum.ASC);
       errorOccurred.value = false;
-    });
+    })
+
+    .catch(() => (errorOccurred.value = true));
 }
 
 function sortByUuid() {
@@ -117,4 +122,8 @@ function sortByUuid() {
 }
 </script>
 
-<style scoped></style>
+<style lang="postcss" scoped>
+.data-test:nth-child(odd) {
+  @apply bg-gray-200;
+}
+</style>

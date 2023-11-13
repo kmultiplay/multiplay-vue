@@ -3,6 +3,7 @@ export const messages = {
     common: {
       message: "Wiadomość",
       timestamp: "Timestamp",
+      error: "Nie udało się pobrać danych, zgłoś się do DI",
     },
     nav: {
       home: "Home",
