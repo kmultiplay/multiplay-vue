@@ -6,7 +6,7 @@
     >
       {{ $t("getAllMessages.getAllMessages") }}
     </button>
-    <span class="text-red-700"
+    <span v-if="errorOccurred" class="text-red-700"
       >Nie udało się pobrać danych, zgłoś się do DI</span
     >
     <table v-if="store.getMessages.length > 0" class="table-auto text-left">
@@ -19,10 +19,10 @@
             </span>
           </th>
           <th>
-            {{ $t("getAllMessages.message") }}
+            {{ $t("common.message") }}
           </th>
           <th @click="sortByTimestamp">
-            {{ $t("getAllMessages.timestamp") }}
+            {{ $t("common.timestamp") }}
             <span v-if="sortingBy === SortingByEnum.Timestamp">
               {{ activeSorting }}
             </span>
@@ -64,6 +64,7 @@ const sortingOrderForTimestamp = ref<SortingOrderEnum>(SortingOrderEnum.ASC);
 const activeSorting = ref<SortingOrderEnum>(SortingOrderEnum.ASC);
 
 const sortingBy = ref<SortingByEnum>();
+const errorOccurred = ref<boolean>(false);
 
 // desc malejąco
 // asc rosnąco
@@ -92,6 +93,7 @@ function sortByTimestamp() {
         sortingOrderForTimestamp.value === SortingOrderEnum.ASC
           ? (sortingOrderForTimestamp.value = SortingOrderEnum.DESC)
           : (sortingOrderForTimestamp.value = SortingOrderEnum.ASC);
+      errorOccurred.value = false;
     });
 }
 
@@ -109,8 +111,9 @@ function sortByUuid() {
         sortingOrderForUuid.value === SortingOrderEnum.ASC
           ? (sortingOrderForUuid.value = SortingOrderEnum.DESC)
           : (sortingOrderForUuid.value = SortingOrderEnum.ASC);
+      errorOccurred.value = false;
     })
-    .catch(() => console.log("ups"));
+    .catch(() => (errorOccurred.value = true));
 }
 </script>
 

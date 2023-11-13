@@ -1,5 +1,9 @@
 export const messages = {
   pl: {
+    common: {
+      message: "Wiadomość",
+      timestamp: "Timestamp",
+    },
     nav: {
       home: "Home",
       sendMessage: "Wyślij wiadomość",
@@ -20,8 +24,11 @@ export const messages = {
     getAllMessages: {
       getAllMessages: "Pobierz wszystkie wiadomości",
       uuid: "Uuid",
-      message: "Wiadomość",
-      timestamp: "Timestamp",
+    },
+    getMessage: {
+      getMessage: "Pobierz wiadomość",
+      read: "Odczytaj",
+      enterUuid: "Wpisz uuid wiadomości",
     },
   },
 };
