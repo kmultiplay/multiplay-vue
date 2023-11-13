@@ -11,7 +11,7 @@
         {{ $t("common.error") }}
       </span>
     </div>
-    <div v-if="store.getMessages.length > 0">
+    <div v-if="store.getMessagesCount > 0">
       <p class="text-left">
         <i>{{ $t("getAllMessages.sorting") }}</i>
       </p>
@@ -38,7 +38,7 @@
         <tbody>
           <tr
             class="item"
-            v-for="(message, index) in store.getMessages"
+            v-for="(message, index) in store.messages"
             :key="index"
           >
             <td>{{ message.uuid }}</td>

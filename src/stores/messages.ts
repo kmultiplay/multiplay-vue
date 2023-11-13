@@ -4,18 +4,24 @@ import { computed, ref } from "vue";
 
 export const useMessagesStore = defineStore("messages", () => {
   const messages = ref<MessageInterface[]>([]);
-  const getMessages = computed(() => messages.value);
+  const sentMessagesCount = ref<number>(0);
+  const latestReceivedMessage = ref<MessageInterface>();
 
-  const recentlyReceivedMessage = ref<MessageInterface>();
+  const getMessagesCount = computed(() => messages.value.length);
 
-  function $resetRecentlyReceivedMessage() {
-    recentlyReceivedMessage.value = undefined;
+  function incrementSentMessagesCount() {
+    sentMessagesCount.value++;
   }
 
+  function $resetLatestReceivedMessage() {
+    latestReceivedMessage.value = undefined;
+  }
   return {
     messages,
-    getMessages,
-    recentlyReceivedMessage,
-    $resetRecentlyReceivedMessage,
+    getMessagesCount,
+    sentMessagesCount,
+    latestReceivedMessage,
+    incrementSentMessagesCount,
+    $resetLatestReceivedMessage,
   };
 });

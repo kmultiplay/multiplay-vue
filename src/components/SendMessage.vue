@@ -43,6 +43,9 @@
 import axios, { AxiosResponse } from "axios";
 import { ref, Ref } from "vue";
 import { services } from "../consts/services";
+import { useMessagesStore } from "@/stores/messages";
+
+const store = useMessagesStore();
 
 const textToSend: Ref<string> = ref("");
 
@@ -65,6 +68,7 @@ function sendMessage() {
     .then((response: AxiosResponse) => {
       messageUuid.value = getMessageUuidFromResponse(response.data);
       messageSent.value = true;
+      store.incrementSentMessagesCount();
     })
     .catch(() => {
       errorOccurred.value = true;

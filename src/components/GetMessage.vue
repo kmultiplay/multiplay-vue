@@ -17,7 +17,7 @@
         {{ $t("getMessage.read") }}
       </button>
 
-      <form class="mt-6" v-if="store.recentlyReceivedMessage">
+      <form class="mt-6" v-if="store.latestReceivedMessage">
         <div>
           <label
             for="message-timestamp"
@@ -25,7 +25,7 @@
             >{{ $t("common.timestamp") }}</label
           >
           <input
-            v-model="store.recentlyReceivedMessage.timestamp"
+            v-model="store.latestReceivedMessage.timestamp"
             id="message-timestamp"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             readonly
@@ -38,7 +38,7 @@
             >{{ $t("common.message") }}</label
           >
           <textarea
-            v-model="store.recentlyReceivedMessage.message"
+            v-model="store.latestReceivedMessage.message"
             id="message-text"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
             readonly
@@ -67,12 +67,12 @@ function getMessage() {
   axios
     .get(`${services.api}/message/${messageUuid.value}`)
     .then((response: AxiosResponse<MessageInterface>) => {
-      store.recentlyReceivedMessage = response.data;
+      store.latestReceivedMessage = response.data;
       errorOccurred.value = false;
     })
     .catch(() => {
       errorOccurred.value = true;
-      store.$resetRecentlyReceivedMessage();
+      store.$resetLatestReceivedMessage();
     });
 }
 </script>

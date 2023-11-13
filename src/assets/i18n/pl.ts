@@ -11,6 +11,10 @@ export const messages = {
       getAllMessages: "Pobierz wszystkie wiadomości",
       getMessage: "Odczytaj wiadomość",
     },
+    header: {
+      messagesCount: "Ilość pobranych wiadomości: ",
+      sentMessagesCount: "Liczba wysłanych wiadomości: ",
+    },
     sendMessage: {
       yourMessage: "Twoja wiadomość:",
       promptText: "Napisz coś...",
